@@ -63,6 +63,7 @@ const AuthController = (app) => {
             res.sendStatus(404);
             return;
         }
+        req.session["currentUser"] = updatedUser;
         const status = await usersDao.updateUser(currentUser, updatedUser);
         res.json(status);
     };

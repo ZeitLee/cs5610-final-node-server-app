@@ -1,7 +1,9 @@
 import reviewsModel from "./reviews-model.js";
 
 export const findAllReviews = async () => {
-    return await reviewsModel.find();
+    return await reviewsModel.find()
+        .populate("userId", "firstname lastname")
+        .exec();
 }
 
 export const findReviewByUserId = async (userId) => {
@@ -9,7 +11,9 @@ export const findReviewByUserId = async (userId) => {
 }
 
 export const findReviewByGameId = async (gameId) => {
-    return await reviewsModel.find({ gameId: gameId });
+    return await reviewsModel.find({ gameId: gameId })
+        .populate("userId", "firstname lastname")
+        .exec();
 }
 
 

@@ -13,12 +13,7 @@ const ReviewController = (app) => {
     }
 
     const findReviewByUserId = async (req, res) => {
-        const currentUser = req.session["currentUser"];
-        if (!currentUser) {
-            res.sendStatus(403);
-            return;
-        }
-        const reviews = await reviewsDao.findReviewByUserId(currentUser._id);
+        const reviews = await reviewsDao.findReviewByUserId(req.params.userId);
         res.send(reviews);
     }
 
@@ -49,6 +44,6 @@ const ReviewController = (app) => {
     app.get("/api/reviews/users/:userId", findReviewByUserId);
     app.post("/api/reviews", createReview);
     app.put("/api/reviews/:reviewId", updateReview);
-    app.delete("./api/reviews/:reviewId", deleteReview);
+    app.delete("/api/reviews/:reviewId", deleteReview);
 };
 export default ReviewController;
