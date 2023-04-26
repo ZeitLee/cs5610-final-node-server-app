@@ -7,13 +7,13 @@ const usersSchema = new mongoose.Schema(
         lastname: String,
         dob: Date,
         email: String,
-        createdAt: { type: Date, default: Date.now },
-        isAdmin: { type: Boolean, default: false },
         role: {
             type: String,
             default: "user",
             enum: ["admin", "user", "guest", "moderator"],
         },
+        createdAt: { type: Date, default: Date.now },
+        isAdmin: { type: Boolean, default: false },
     },
     { collection: "users" }
 );

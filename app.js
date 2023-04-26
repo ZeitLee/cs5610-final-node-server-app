@@ -4,6 +4,8 @@ import cors from 'cors'
 import AuthController from "./users/auth-controller.js";
 import ReviewController from "./reviews/reviews-controller.js";
 import FollowController from "./follows/follows-controller.js";
+import ClubController from './clubs/clubs-controller.js'
+import MembersController from './members/members-controller.js'
 import mongoose from "mongoose";
 
 const CONNECTION_STRING = process.env.DB_CONNECTION_STRING || 'mongodb://127.0.0.1:27017/web-users';
@@ -22,7 +24,7 @@ app.use(
 app.use(
     cors({
         credentials: true,
-        // origin: "http://localhost:3000",
+        origin: "http://localhost:3000",
     })
 );
 app.use(express.json());
@@ -31,5 +33,7 @@ const port = process.env.PORT || 4000;
 AuthController(app);
 ReviewController(app);
 FollowController(app);
+ClubController(app);
+MembersController(app);
 
 app.listen(port)

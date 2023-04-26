@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 const reviewsSchema = new mongoose.Schema(
     {
+        title: String,
         text: String,
         gameId: Number,
         gameName: String,
